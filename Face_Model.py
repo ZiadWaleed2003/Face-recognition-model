@@ -60,16 +60,16 @@ class FaceModel:
             matches = face_recognition.compare_faces(self.face_embeddings, face_encoding)
             name = "Unknown"
 
-            # # If a match was found in known_face_encodings, just use the first one.
-            if True in matches:
-                first_match_index = matches.index(True)
-                name = self.face_names[first_match_index]
+            # # # If a match was found in known_face_encodings, just use the first one.
+            # if True in matches:
+            #     first_match_index = matches.index(True)
+            #     name = self.face_names[first_match_index]
 
-            # # Or instead, use the known face with the smallest distance to the new face
-            # face_distances = face_recognition.face_distance(self.face_embeddings, face_encoding)
-            # best_match_index = np.argmin(face_distances)
-            # if matches[best_match_index]:
-            #     name = self.face_names[best_match_index]
+            # Or instead, use the known face with the smallest distance to the new face
+            face_distances = face_recognition.face_distance(self.face_embeddings, face_encoding)
+            best_match_index = np.argmin(face_distances)
+            if matches[best_match_index]:
+                name = self.face_names[best_match_index]
             face_names.append(name)
 
         # Convert to numpy array to adjust coordinates with frame resizing quickly

@@ -2,11 +2,14 @@ import cv2
 from Face_Model import FaceModel
 import os
 
-os.chdir(r"D:\Face recognition model\Face_model_data\test")
+# change that var to the path of your image folder
+img_path = r"C:\Users\ziad\PycharmProjects\Face Recognition model\test"
+
+os.chdir(img_path)
 
 model = FaceModel()
 
-model.load_images(r"D:\Face recognition model\Face_model_data\test")
+model.load_images(img_path)
 
 cap = cv2.VideoCapture(0)
 
